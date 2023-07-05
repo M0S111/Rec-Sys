@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Movie Recommender</title>
+	<link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+
+<body style="text-align: center; background-image: url('/static/img/bkg_img.jpg'); color: darkgoldenrod;">
+<h1>Recommendation System</h1>
+
+<!--Select dropdown list to get prferred genre from those available in dataset description-->
+<div>
+	<form action="/recommend_movies" method="post">
+		<input type="text" id="query" name="query" placeholder="Search for a movie">
+		<input type="submit" value="Submit">
+	</form>
+</div>
+
+<!--Jinja 2 code to show each element of list data structure named "data"-->
+
+<div>
+	<table align="center" style="border: 1px dashed; border-radius: 5px; background-color: rgba(50, 50, 50, 0.7);">
+
+		{% if name %}
+
+		<p>Movies similar to {{name}}:</p><br>
+
+		{% else %}
+
+		<p>{{error_msg}}</p><br>
+
+		{% endif %}
+
+		{% for i in data %}
+
+		<tr><td style="border: 1px dashed; border-radius: 5px; padding: 5px">{{i}}</td></tr>
+
+		{% endfor %}
+		
+	</table>
+</div>
+
+
+</body>
+</html>

@@ -14,7 +14,7 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-'''definition of function to take dropdown list value as input
+'''definition of function to take input from text field
 using http POST method for the kNN model and
 print out a list of similarly rated movies
 according to first movie containing the input genre tag'''

@@ -2,6 +2,8 @@
 from flask import Flask,render_template,request
 import pickle
 import numpy as np
+import importlib
+import itertools
 
 #loading data from pickle files into variables
 clean_ratings = pickle.load(open('clean_ratings.pkl','rb'))
@@ -31,17 +33,18 @@ def recommend():
         distances, recommendations = model.kneighbors(pvTable.iloc[mov_id].dropna().values.reshape(1, -1), n_neighbors=10)
     
         data = []
+        links = []
 
         for i in range(len(recommendations)):
             for n in range(len(recommendations[i])):
-                data.append(pvTable.index[recommendations[i][n]])
+                data.append(pvTable.index[recommendations[i][n]] + ' Distance: ' + str(distances[i][n]))
+                links.append(str(clean_ratings.at[clean_ratings[clean_ratings['title'] == (pvTable.index[recommendations[i][n]])].index[0],'imdbId']))
 
-        return render_template('index.html',data=data,name=name)
+        return render_template('index.html',name=name,d_l=zip(data,links))
 
     except IndexError:
         error_msg = "Sorry, this movie isn't in the database."
         return render_template('index.html',error_msg = error_msg)
-    
 
 if __name__ == "__main__":
     app.run()

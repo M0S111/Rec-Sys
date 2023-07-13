@@ -5,6 +5,22 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Movie Recommender</title>
 	<link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+	<style type="text/css">
+		
+		a:link{
+			color: darkgoldenrod;
+			text-decoration: none;
+		}
+
+		a:visited{
+			color: palegoldenrod;
+		}
+
+		a:hover{
+			text-decoration: underline;
+		}
+
+	</style>
 </head>
 
 <body style="text-align: center; background-image: url('/static/img/bkg_img.jpg'); color: darkgoldenrod;">
@@ -33,9 +49,9 @@
 
 		{% endif %}
 
-		{% for i in data %}
+		{% for d,l in d_l %}
 
-		<tr><td style="border: 1px dashed; border-radius: 5px; padding: 5px">{{i}}</td></tr>
+		<tr><td style="border: 1px dashed; border-radius: 5px; padding: 5px"><a href="{{ 'https://www.imdb.com/title/tt0%s'%l }}">{{d}}</a></td></tr>
 
 		{% endfor %}
 		

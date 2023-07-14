@@ -49,9 +49,9 @@
 
 		{% endif %}
 
-		{% for d,l in d_l %}
+		{% for d,l,ds in d_l_dt %}
 
-		<tr><td style="border: 1px dashed; border-radius: 5px; padding: 5px"><a href="{{ 'https://www.imdb.com/title/tt0%s'%l }}">{{d}}</a></td></tr>
+		<tr><td style="border: 1px dashed; border-radius: 5px; padding: 5px"><a href="{{ 'https://www.imdb.com/title/%s'%l }}">{{d}}</a> Distance: {{ds}}</td></tr>
 
 		{% endfor %}
 		

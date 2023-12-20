@@ -5,8 +5,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Movie Recommender</title>
 	<link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap">
 	<style type="text/css">
 		
+		body{
+			font-family: "Josefin Sans", sans-serif;
+		}
+
 		a:link{
 			color: darkgoldenrod;
 			text-decoration: none;
@@ -49,9 +54,9 @@
 
 		{% endif %}
 
-		{% for d,l,ds in d_l_dt %}
+		{% for d,l in d_l %}
 
-		<tr><td style="border: 1px dashed; border-radius: 5px; padding: 5px"><a href="{{ 'https://www.imdb.com/title/%s'%l }}" target="_blank">{{d}}</a> Distance: {{ds}}</td></tr>
+		<tr><td style="border: 1px dashed; border-radius: 5px; padding: 5px"><a href="{{ 'https://www.imdb.com/title/%s'%l }}" target="_blank">{{d}}</a></td></tr>
 
 		{% endfor %}
 		

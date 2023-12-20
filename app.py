@@ -34,20 +34,25 @@ def recommend():
     
         data = []
         links = []
-        dist = []
+        l = ''
+
 
         for i in range(len(recommendations)):
             for n in range(len(recommendations[i])):
+
                 data.append(pvTable.index[recommendations[i][n]])
-                dist.append(str(distances[i][n]))
+
                 l = str(clean_ratings.at[clean_ratings[clean_ratings['title'] == (pvTable.index[recommendations[i][n]])].index[0],'imdbId'])
+            
                 if len(l) == 5:
                     l = ('{}'+l).format('tt00')
                 elif len(l) == 6:
                     l = ('{}'+l).format('tt0')
+                else:
+                    l = ('{}'+l).format('tt')
                 links.append(l)
 
-        return render_template('index.html',name=name,d_l_dt=zip(data,links,dist))
+        return render_template('index.html',name=name,d_l=zip(data,links))
 
     except IndexError:
         error_msg = "Sorry, this movie isn't in the database."

@@ -6,9 +6,9 @@ import importlib
 import itertools
 
 #loading data from pickle files into variables
-clean_ratings = pickle.load(open('clean_ratings.pkl','rb'))
-pvTable = pickle.load(open('pvTable.pkl','rb'))
-model = pickle.load(open('model.pkl','rb'))
+clean_ratings = pickle.load(open('C:/Users/M Sheharyar/Desktop/Rec_Sys/clean_ratings.pkl','rb'))
+pvTable = pickle.load(open('C:/Users/M Sheharyar/Desktop/Rec_Sys/pvTable.pkl','rb'))
+model = pickle.load(open('C:/Users/M Sheharyar/Desktop/Rec_Sys/model.pkl','rb'))
 
 #basic Flask app boilerplate code
 app = Flask(__name__)

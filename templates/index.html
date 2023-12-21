@@ -25,18 +25,20 @@
 			text-decoration: underline;
 		}
 
-		#head{
+		.bkg{
 			background-color: rgba(50, 50, 50, 0.7);
 			border: 1px dashed;
 			border-radius: 5px;
 			padding: 10px;
+			max-width: 70%;
+			margin: auto;
 		}
 
 	</style>
 </head>
 
 <body style="text-align: center; background-image: url('/static/img/bkg_img.jpg'); color: darkgoldenrod;">
-<div id="head"><h1>Recommendation System</h1>
+<div class="bkg"><h1>Recommendation System</h1>
 
 <p>A basic recommendation system for a number of popular (& not-so-popular) movies</p>
 <p>Type in the name of a movie to see suggestions for similarly rated movies,<br> click the names to see movie details on IMDB</p></div><br>
@@ -52,23 +54,27 @@
 <!--Jinja 2 code to show each element of list data structure named "data"-->
 
 <div>
-	<table align="center" style="border: 1px dashed; border-radius: 5px; background-color: rgba(50, 50, 50, 0.7);">
+		{% if name == '' %}
 
-		{% if name %}
+			<br><p class="bkg">Enter a movie title</p><br>
 
-		<p>Movies similar to {{name}}:</p><br>
+		{% elif name %}
 
-		{% else %}
+			<br><p class="bkg">Movies similar to {{name}}:</p><br>
 
-		<p>{{error_msg}}</p><br>
+			<table align="center" style="border: 1px dashed; border-radius: 5px; background-color: rgba(50, 50, 50, 0.7);">
+
+			{% for d,l in d_l %}
+
+				<tr><td style="border: 1px dashed; border-radius: 5px; padding: 5px"><a href="{{ 'https://www.imdb.com/title/%s'%l }}" target="_blank">{{d}}</a></td></tr>
+
+			{% endfor %}
+
+		{% elif error_msg %}
+
+			<br><p class="bkg">{{error_msg}}</p><br>
 
 		{% endif %}
-
-		{% for d,l in d_l %}
-
-		<tr><td style="border: 1px dashed; border-radius: 5px; padding: 5px"><a href="{{ 'https://www.imdb.com/title/%s'%l }}" target="_blank">{{d}}</a></td></tr>
-
-		{% endfor %}
 		
 	</table>
 </div>
